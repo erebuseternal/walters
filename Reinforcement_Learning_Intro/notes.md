@@ -20,10 +20,13 @@ Also, just as a side note, I should do the coding as I have the lectures. Otherw
 ### November 15, 2019
 In building the TD(0) model I realized that you really have to allow them to explore _a lot_. If you don't they'll create cycles and quickly learn those cycles over everything else which gets incredibly annoying. So just a note to remember. 
 
+In building the approximation model I found my parameters were diverging. Only closer inspection it became clear that they were pinging back and forth between negative and positive at larger and larger intervals. Decreasing the larning rate (alpha) fixed this right up! :)
+
 #### Accomplished Today
 - Built Monte Carlo and TD(0) methods
 - Tried them on basic and costly worlds
+- Built TD(0) Function Approximation method
+#####4hrs
 
 #### Goals for Next Time
-- Build approximation method for TD(0)
 - See how far you can get on the final project (tomorrow is a 5 hour day)
