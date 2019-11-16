@@ -16,3 +16,14 @@ Rebuilt the gridworld and it's so much better now. Really important bits were to
 - Try out step penalized grid world
 
 Also, just as a side note, I should do the coding as I have the lectures. Otherwise I just end up forgetting and having to watching the lectures over again (like I'm having to do now...) So just keep a steady pace, and it's really a lot of fun and not frustrating, so no need worrying about getting into a "fugue" state. :)
+
+### November 15, 2019
+In building the TD(0) model I realized that you really have to allow them to explore _a lot_. If you don't they'll create cycles and quickly learn those cycles over everything else which gets incredibly annoying. So just a note to remember. 
+
+#### Accomplished Today
+- Built Monte Carlo and TD(0) methods
+- Tried them on basic and costly worlds
+
+#### Goals for Next Time
+- Build approximation method for TD(0)
+- See how far you can get on the final project (tomorrow is a 5 hour day)

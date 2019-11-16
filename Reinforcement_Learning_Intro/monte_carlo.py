@@ -2,36 +2,6 @@ import random
 from collections import defaultdict
 from grid_world import GridWorld
 
-def play_game(policy, env, max_actions=100):
-	sars = []
-	while not env.game_over() and len(sars) < 100:
-		state = env.get_state()
-		action = policy[state]
-		reward = env.act(action)
-		sars.append((state, action, reward, env.get_state()))
-	return sars
-
-def back_compute_returns(sars, gamma):
-	# initialize terminal state to 0 returns
-	returns = {
-		sars[-1][-1]: 0
-	}
-	# back compute returns
-	for state, action, reward, state2 in reversed(sars):
-		returns[state] = reward + gamma * returns[state2]
-	return returns
-
-def evaluate_policy(policy, env_builder, gamma=0.9, iterations=100):
-	return_dists = defaultdict(list)
-	for _ in range(iterations):
-		env = env_builder()
-		sars = play_game(policy, env)
-		for state, _return in back_compute_returns(sars, gamma).items():
-			return_dists[state].append(_return)
-	returns = {state: sum(return_dists[state]) / len(return_dists[state]) 
-			   for state in return_dists}
-	return returns
-
 def basic_env_builder():
 	rewards = {(i, j): 0.0 for i in range(4) for j in range(3)}
 	rewards[(3, 2)] = 1.
@@ -39,29 +9,12 @@ def basic_env_builder():
 	env = GridWorld(rewards)
 	return env
 
-def random_start_env_builder():
-	rewards = {(i, j): 0.0 for i in range(4) for j in range(3)}
+def costly_walk_builder():
+	rewards = {(i, j): -0.5 for i in range(4) for j in range(3)}
 	rewards[(3, 2)] = 1.
 	rewards[(3, 1)] = -1.
-	options = [(i, j) for i in range(4) for j in range(3)
-				if (i, j) not in [(1, 1), (3, 2), (3, 1)]]
-	env = GridWorld(rewards, starting_state=random.choice(options))
+	env = GridWorld(rewards)
 	return env
-
-def basic_policy():
-	# go right if you can,
-	# otherwise go up
-	return {
-		(0, 0): 'R',
-		(1, 0): 'R',
-		(2, 0): 'R',
-		(3, 0): 'U',
-		(0, 1): 'U',
-		(2, 1): 'R',
-		(0, 2): 'R',
-		(1, 2): 'R',
-		(2, 2): 'R'
-	}
 
 def view_returns(returns, size):
 	# initialize every cell to empty
@@ -76,11 +29,75 @@ def view_returns(returns, size):
 	rep += ' ' + ' '.join(['------'] * size[0]) + ' \n'
 	print(rep)
 
+def run_monte_carlo(policy, env_builder, gamma=0.9, epsilon=0.1, iterations=1000, max_steps=25):
+	Q = defaultdict(lambda: defaultdict(lambda: (0, 0)))
+	for _ in range(iterations):
+		# build the environment
+		env = env_builder()
+		# select a random start
+		env.state = random.choice(list(env.legal_states))
+		# play the game
+		sars = []
+		while not env.game_over() and len(sars) < max_steps:
+			state = env.get_state()
+			# if the policy doesn't know what to
+			# do with this state, assign a random
+			# action
+			r = random.random()
+			if state not in policy:
+				policy[state] = random.choice(list(env.get_actions()))
+			action = policy[state]
+			if r <= epsilon:
+				action = random.choice(list(env.get_actions()))
+			reward = env.act(action)
+			sars.append((state, action, reward, env.get_state()))
+		# if we started in a terminal position,
+		# play a new game
+		if not sars:
+			continue
+		# initialize the returns by setting
+		# the return of the terminal state to
+		# zero
+		returns = {
+			sars[-1][-1]: 0
+		}
+		for state, action, reward, state2 in reversed(sars):
+			returns[state] = reward + gamma * returns[state2]
+		# update Q
+		for state, action, _, _ in reversed(sars):
+			mean, N = Q[state][action]
+			Q[state][action] = (
+				(returns[state] + N * mean) / (N + 1),
+				N + 1
+			)
+		# update the policy with the argmax for each
+		# known state
+		for state in Q:
+			action = sorted((action for action in Q[state]), 
+							 key=lambda action: Q[state][action],
+							 reverse=True)[0]
+			policy[state] = action
+	# finally we print out the decided
+	# upon actions
+	# initialize every cell to empty
+	rows = [[' '] * env.size[0] for j in range(env.size[1])]
+	# add in the tokens for blocked cells
+	for state, action in policy.items():
+		rows[state[1]][state[0]] = action
+	# cobble together the string
+	rep = ''
+	for row in reversed(rows):
+		rep += ' ' + ' '.join(['-----'] * env.size[0]) + ' \n'
+		rep += '|  ' + '  |  '.join(row) + '  |\n'
+	rep += ' ' + ' '.join(['-----'] * env.size[0]) + ' \n'
+	print(rep)
+	return policy, Q
 
 if __name__ == '__main__':
-	policy = basic_policy()
-	returns = evaluate_policy(policy, random_start_env_builder)
-	view_returns(returns, (4, 3))
+	policy = {}
+	run_monte_carlo(policy, costly_walk_builder)
+	policy = {}
+	run_monte_carlo(policy, basic_env_builder)
 
 
 
