@@ -30,3 +30,14 @@ In building the approximation model I found my parameters were diverging. Only c
 
 #### Goals for Next Time
 - See how far you can get on the final project (tomorrow is a 5 hour day)
+
+### November 16, 2019
+In building the investor I found that my model was diverging like crazy again. Turned out this was simply because I wasn't normalizing. So make sure you normalize!
+
+#### Accomplished Today
+- Built the investor (final project)
+- Finished up the RL intro class!
+#####6hrs
+
+#### Goals for Next Time
+- Start DNN2 class
