@@ -23,3 +23,44 @@ Had a lot of chores to do (as well as picking up some stuff I left at the apartm
 - Complete the quiz
 - Complete the practice problems
 - Complete week 1!
+
+### November 18, 2019
+
+#### Accomplished Today
+- Finished up week 1!
+- Saw just how dramatic initialization can be on your final results
+- Also saw how dramatic regularization can be
+Pretty cool stuff
+#####1hr
+
+#### Goals for Next Time
+- Week 2 lectures
+- Maybe the assignments too? (given they are so quick)
+
+### November 19, 2019
+
+#### Accomplished Today
+- Learned about various ways to speed up learning:
+    + RMSProp
+    + Momentum
+    + Minibatch
+    + Adams
+    + Learning rate decay
+
+#### Goals for Next Time
+- Finish week 2!
+- Finish week 3 lectures
+#####1.5hrs
+
+### November 20, 2019
+
+#### Accomplished Today
+- Finished week 2!
+- Learned about some new things:
+    + Batch normalization
+    + Hyperparameter tuning
+        * Random searching 
+        * Scaling hyperparameter searches properly
+
+#### Goals for Next Time
+- Finish week 3!
