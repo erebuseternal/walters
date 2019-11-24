@@ -61,6 +61,9 @@ Pretty cool stuff
     + Hyperparameter tuning
         * Random searching 
         * Scaling hyperparameter searches properly
+    + Softmax for classification of multiple categories
+- Saw tensorflow for the first time!
+#####2hrs
 
 #### Goals for Next Time
 - Finish week 3!
