@@ -67,3 +67,16 @@ Pretty cool stuff
 
 #### Goals for Next Time
 - Finish week 3!
+
+### November 23, 2019
+
+#### Accomplished Today
+- Played around with building a neural net from scratch (see NN_Viz)
+####3hrs
+
+### November 24, 2019
+
+#### Accomplished Today
+- Played around with visualizing the outputs of hidden layers (see NN_Viz)
+- Finished week 3!
+####3hrs
