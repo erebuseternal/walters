@@ -79,4 +79,6 @@ Pretty cool stuff
 #### Accomplished Today
 - Played around with visualizing the outputs of hidden layers (see NN_Viz)
 - Finished week 3!
-####3hrs
+- Finished the 3rd course in the specialization
+    + Learned about end to end, transfer learning, and multitask learning. 
+####5hrs
