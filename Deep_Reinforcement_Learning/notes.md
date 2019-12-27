@@ -1,6 +1,6 @@
 # Notes
 
-### December 20 , 2019
+### December 20, 2019
 
 #### Accomplished Today
 - Built my first RL agent/model for an open ai gym environment (cart.py)
@@ -8,8 +8,10 @@
 - Built a TD(lambda) agent for mountain
 #####5hrs
 
-#### Goals for Next Time
-- Complete the quiz
-- Complete the practice problems
-- Complete week 1!
+### December 27, 2019
+
+#### Accomplished Today
+- Built first RL agent using an actual net for Policy Gradient Algo
+#####2
+
 
