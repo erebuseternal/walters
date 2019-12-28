@@ -19,6 +19,7 @@
 
 #### Accomplished Today
 - Built a Deep Q Learning Agent
-#####1hrs
+- Studied an A3C implementation
+#####2hrs
 
 
