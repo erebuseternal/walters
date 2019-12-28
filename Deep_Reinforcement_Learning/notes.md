@@ -12,6 +12,7 @@
 
 #### Accomplished Today
 - Built first RL agent using an actual net for Policy Gradient Algo
-#####2
+- Learned Deep Q-Learning Theory
+#####3hrs
 
 
