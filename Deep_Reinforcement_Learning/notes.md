@@ -15,4 +15,10 @@
 - Learned Deep Q-Learning Theory
 #####3hrs
 
+### December 28, 2019
+
+#### Accomplished Today
+- Built a Deep Q Learning Agent
+#####1hrs
+
 
