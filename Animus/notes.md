@@ -40,3 +40,23 @@ Then I can simply pad to get the same aspect ratio, resize to get the correct nu
 - Learned about opencv
 - Determined a method for doing cropping, resizing, and general standardization
 #####2hrs
+
+### January 9, 2020
+
+#### General Notes
+Let's try building that converter today. :)
+
+Okay looking at the y/x ratios above it seems the largest is 1.8. So I'm thinking we go for wider rather than squarer images as the base. That will mean we add some padding to stretch out the squatter images. 
+
+Looking at 300x540 it seems we could still go smaller. 150x270 seems alright. Going smaller really washes out any kind of detail. These images are already many orders of magnitude smaller than they originally were. (I will check out some papers though to see what people have done.)
+
+Goodness... I didn't even spot the animals in some of these when it's down at such a low resolution... I really need to look at what people are using. I'm going to convert down to 340 by 540 in order to make these more portable though.
+
+Found this paper: https://www.pnas.org/content/pnas/115/25/E5716.full.pdf. Gotta go get ink for my printer though. :) 
+
+#### Accomplished Today
+- Built standardizer
+- Standardized data set
+- Found first paper
+- Got ink :P
+#####2.5hrs
